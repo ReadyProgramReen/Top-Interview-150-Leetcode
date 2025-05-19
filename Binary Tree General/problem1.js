@@ -1,4 +1,4 @@
-//// Problem Description
+
 
 //  Maximum Depth of Binary Tree
 // Given the root of a binary tree, return its maximum depth.
@@ -33,6 +33,8 @@ var maxDepth = function(root) {
     return 1 + Math.max(maxDepth(root.left), maxDepth(root.right))
     
 };
+
+
 
 // SOLUTION #2: BFS
 
