@@ -31,3 +31,46 @@
 // The number of nodes in the tree is in the range [1, 1000].
 // 0 <= Node.val <= 9
 // The depth of the tree will not exceed 10.
+
+// SOLUTION:
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var sumNumbers = function(root) {
+    //helper function with 2 paramters 
+    function dfs(node, currentSum){
+    //base case : if node is null return 0
+    if(!node) return 0
+
+    //update currentsum to include the currentsum * 10 + the current node
+    currentSum = currentSum * 10 + node.val
+
+    //check if the current node is a leaf node if so return the currentSum
+    if(!node.left && !node.right) return currentSum
+
+    //declare a varaible for the left node and set it to the recursive call to the left
+    let leftSum = dfs(node.left,currentSum)
+
+    //declare a varaible for the right node and set it to the recursive call to the right
+    let rightSum = dfs(node.right,currentSum)
+
+    //return the sum of left and right
+    return rightSum + leftSum
+
+    //close the helper function 
+
+    }
+
+    // call the helper function: pass 2 argument
+   return dfs(root,0)
+};
