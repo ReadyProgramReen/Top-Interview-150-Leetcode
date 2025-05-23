@@ -15,3 +15,22 @@
 // (1 --> 2): The sum is 3.
 // (1 --> 3): The sum is 4.
 // There is no root-to-leaf path with sum = 5.
+
+// SOLUTION:
+
+var hasPathSum = function(root, targetSum) {
+  // Base Case 1: If the tree is empty, return false
+    if (!root) return false;
+    
+    // Base Case 2: If it's a leaf node, check if the current value matches the remaining target
+    if (!root.left && !root.right) {
+        return root.val === targetSum;
+    }
+
+    //  Recursive Case: Subtract the current node's value and explore children
+    let newTarget = targetSum - root.val;
+
+    // Recurse left and right
+    return hasPathSum(root.left, newTarget) || hasPathSum(root.right, newTarget);
+
+};
